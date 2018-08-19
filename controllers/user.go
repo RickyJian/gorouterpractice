@@ -43,3 +43,8 @@ func (uc *UserController) Create(w http.ResponseWriter, r *http.Request, p httpr
 	w.WriteHeader(201)
 	fmt.Fprintf(w, "%s", uj)
 }
+
+func (uc *UserController) Remove(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	// 刪除 邏輯
+	w.WriteHeader(200)
+}
