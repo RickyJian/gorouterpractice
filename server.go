@@ -15,6 +15,7 @@ func get(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		Gender: "male",
 		Age:    18,
 	}
+	// JSON 編碼
 	userJSON, _ := json.Marshal(u)
 	// 設定回傳 Header
 	w.Header().Set("Content-Type", "application/json")
