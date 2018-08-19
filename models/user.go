@@ -3,5 +3,5 @@ package models
 type User struct {
 	Name   string
 	Gender string
-	Age    string
+	Age    int
 }
