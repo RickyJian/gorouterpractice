@@ -15,7 +15,7 @@ func NewUserController() *UserController {
 	return &UserController{}
 }
 
-func (uc *UserController) GetUserInfo(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (uc *UserController) Get(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	u := models.User{
 		Name:   p.ByName("name"),
 		Gender: "male",
@@ -28,4 +28,18 @@ func (uc *UserController) GetUserInfo(w http.ResponseWriter, r *http.Request, p 
 	// 設定 HTTP Status
 	w.WriteHeader(200)
 	fmt.Fprintf(w, "%s", userJSON)
+}
+
+func (uc *UserController) Create(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	u := models.User{}
+	// JSON解碼 body
+	json.NewDecoder(r.Body).Decode(&u)
+
+	u.Name = "Ricky"
+
+	uj, _ := json.Marshal(u)
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(201)
+	fmt.Fprintf(w, "%s", uj)
 }

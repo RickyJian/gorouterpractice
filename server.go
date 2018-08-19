@@ -13,10 +13,8 @@ func main() {
 	// 開啟 HTTPRouter
 	mux := httprouter.New()
 	// GET 方法
-	mux.GET("/user/:name", userController.GetUserInfo)
-	server := http.Server{
-		Addr:    "127.0.0.1:8080",
-		Handler: mux,
-	}
-	server.ListenAndServe()
+	mux.GET("/user/:name", userController.Get)
+	// POST 方法
+	mux.POST("/user", userController.Create)
+	http.ListenAndServe("127.0.0.1:8080", mux)
 }
